@@ -101,19 +101,15 @@ void opcontrol() {
 	while (true) {
         // Option 1: Tank Control
         int throttle = master.get_analog(ANALOG_LEFT_Y);
-        int tur = master.get_analog(ANALOG_RIGHT_X);
-        //chassis.tank(throttle, turn);
+        int turn = master.get_analog(ANALOG_RIGHT_X);
+        chassis.tank(throttle, turn);
 
         // Option 2: Single Stick Arcade
         // Option 3: Double Stick Arcade
-
-
         // Option 4: Single/Double Curvature
 
-        
-        chassis.arcade(throttle, tur, false, 0.3);
-
-
+        //What does desaturate bias do?
+        //chassis.arcade(throttle, turn, false, 0.3);
         
         if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) { arm.move_velocity(100); }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) { arm.move_velocity(-100); } 
@@ -131,9 +127,9 @@ void opcontrol() {
 /*
 - Macros are a simple way to run a set of commands with one button press
 - They are useful for complex actions that would be difficult to do manually
-    - Additionally, they ensure consistency and accuracy especially in high pressure situations
+    - Additionally, they ensure consistency and accuracy, especially in high-pressure situations
 - However, unlike macros != auton
-    - Auton code requires no driver input and generally a longer sequence of actions
+    - Auton code requires no driver input and generally requires a longer sequence of actions
     - Macros are generally short sequences of actions that require some driver input
 - Think of some examples of macros in a VEX game
 
